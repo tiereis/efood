@@ -1,13 +1,13 @@
 import Header from '../../components/Header'
 import LojaLista from '../../components/LojasLista'
-import Restaurnate from '../../components/models/Restaurante'
+import Restaurante from '../../models/Restaurante'
 import { Container } from '../../styles'
 
 import sushi from '../../assets/images/sushi.png'
 import massa from '../../assets/images/massa.png'
 import Footer from '../../components/Footer'
 
-const restauranteDetalhado: Restaurnate[] = [
+const restauranteDetalhado: Restaurante[] = [
   {
     id: 1,
     imagem: sushi,

@@ -1,26 +1,29 @@
-class Restaurants {
-    classification: string
-    description: string
-    image: string
-    infos: string[]
-    title: string
-    id: number
+class Restaurante {
+  id: number
+  imagem: string
+  titulo: string
+  nota: string
+  descricao: string
+  categoria: string
+  destaque?: boolean
 
-    constructor(
-        id: number,
-        classification: string,
-        description: string,
-        image: string,
-        infos: string[],
-        title: string
-    ) {
-        this.id = id
-        this.classification = classification
-        this.description = description
-        this.image = image
-        this.infos = infos
-        this.title = title
-    }
+  constructor(
+    id: number,
+    imagem: string,
+    titulo: string,
+    nota: string,
+    descricao: string,
+    categoria: string,
+    destaque?: boolean
+  ) {
+    this.id = id
+    this.imagem = imagem
+    this.titulo = titulo
+    this.nota = nota
+    this.descricao = descricao
+    this.categoria = categoria
+    this.destaque = destaque
+  }
 }
 
-export default Restaurants
+export default Restaurante

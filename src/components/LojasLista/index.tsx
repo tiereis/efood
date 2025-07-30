@@ -1,10 +1,10 @@
 import Lojas from '../Lojas'
 import { ListaLoja } from './styles'
 
-import Restaurnate from '../models/Restaurante'
+import Restaurante from '../../models/Restaurante'
 
 type Props = {
-  restaurantes: Restaurnate[]
+  restaurantes: Restaurante[]
 }
 
 const LojaLista = ({ restaurantes }: Props) => (

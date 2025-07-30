@@ -1,5 +1,5 @@
 import ComidaItem from '../Comida'
-import Prato from '../models/Prato'
+import Prato from '../../models/Prato'
 import { ListaDeComida } from './styles'
 
 type Props = {

@@ -1,7 +1,7 @@
 import Footer from '../../components/Footer'
 import HeaderPerfil from '../../components/HeaderPerfil'
 import ListaDeComidas from '../../components/ListaDeComidas'
-import Prato from '../../components/models/Prato'
+import Prato from '../../models/Prato'
 import { Container } from '../../styles'
 
 import pizza from '../../assets/images/pizza.png'

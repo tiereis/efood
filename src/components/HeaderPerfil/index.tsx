@@ -1,6 +1,5 @@
 import {
   Capa,
-  Container,
   NomeRestaurante,
   Paragrafo,
   Section,
@@ -8,21 +7,29 @@ import {
 } from './styles'
 import logo from '../../assets/images/logo.svg'
 import { Link } from 'react-router-dom'
+import { Container } from '../../styles'
+import { RestauranteDetalhado } from '../../pages/Home'
 
-const HeaderPerfil = () => (
+type Props = {
+  heroBanner: RestauranteDetalhado
+}
+
+const HeaderPerfil = ({ heroBanner }: Props) => (
   <header>
     <Section>
-      <p>Restaurantes</p>
-      <Link to="/">
-        <img src={logo} alt="" />
-      </Link>
-      <p>0 produtos no carrinho</p>
+      <div>
+        <p>Restaurantes</p>
+        <Link to="/">
+          <img src={logo} alt="" />
+        </Link>
+        <p>0 produtos no carrinho</p>
+      </div>
     </Section>
-    <Capa>
+    <Capa style={{ backgroundImage: `url(${heroBanner.capa})` }}>
       <Transparente />
       <Container>
-        <Paragrafo>Italiana</Paragrafo>
-        <NomeRestaurante>La Dolce Vita Trattoria</NomeRestaurante>
+        <Paragrafo>{heroBanner.tipo}</Paragrafo>
+        <NomeRestaurante>{heroBanner.titulo}</NomeRestaurante>
       </Container>
     </Capa>
   </header>

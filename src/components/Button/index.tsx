@@ -1,11 +1,12 @@
 import { ButtonContainer, ButtonLink } from './styles'
+import React from 'react' // <--- Importe React para usar React.ReactNode
 
 type Props = {
   type: 'button' | 'link'
   title: string
   to?: string
   onClick?: () => void
-  children: string
+  children?: React.ReactNode
 }
 
 const Button = ({ type, title, to, onClick, children }: Props) => {

@@ -1,64 +1,49 @@
+import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+
+import { Container } from '../../styles'
 import Footer from '../../components/Footer'
 import HeaderPerfil from '../../components/HeaderPerfil'
 import ListaDeComidas from '../../components/ListaDeComidas'
-import Prato from '../../models/Prato'
-import { Container } from '../../styles'
+import { RestauranteDetalhado } from '../Home'
 
-import pizza from '../../assets/images/pizza.png'
+export type PratoDetalhado = {
+  id: number
+  preco: number
+  foto: string
+  nome: string
+  descricao: string
+  porcao: string
+}
 
-const pratoDetalhado: Prato[] = [
-  {
-    id: 1,
-    imagem: pizza,
-    nomePrato: 'Pizza Marguerita',
-    descricaoPrato:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 2,
-    imagem: pizza,
-    nomePrato: 'Pizza Marguerita',
-    descricaoPrato:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 3,
-    imagem: pizza,
-    nomePrato: 'Pizza Marguerita',
-    descricaoPrato:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 4,
-    imagem: pizza,
-    nomePrato: 'Pizza Marguerita',
-    descricaoPrato:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 5,
-    imagem: pizza,
-    nomePrato: 'Pizza Marguerita',
-    descricaoPrato:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 6,
-    imagem: pizza,
-    nomePrato: 'Pizza Marguerita',
-    descricaoPrato:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
+const PerfilLoja = () => {
+  const [prato, setPrato] = useState<PratoDetalhado[]>([])
+  const [restaurante, setRestaurante] = useState<RestauranteDetalhado | null>(
+    null
+  )
+  const { id } = useParams()
+
+  useEffect(() => {
+    fetch(`https://ebac-fake-api.vercel.app/api/efood/restaurantes/${id}`)
+      .then((res) => res.json())
+      .then((res: RestauranteDetalhado) => {
+        setRestaurante(res)
+        setPrato(res.cardapio)
+      })
+  }, [id])
+  if (!restaurante) {
+    return <div>Carregando...</div>
   }
-]
 
-const PerfilLoja = () => (
-  <>
-    <HeaderPerfil />
-    <Container>
-      <ListaDeComidas Pratos={pratoDetalhado} />
-    </Container>
-    <Footer />
-  </>
-)
+  return (
+    <>
+      <HeaderPerfil heroBanner={restaurante} />
+      <Container>
+        <ListaDeComidas Pratos={prato} />
+      </Container>
+      <Footer />
+    </>
+  )
+}
 
 export default PerfilLoja

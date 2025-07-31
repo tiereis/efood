@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { cores } from '../../styles'
+import { ButtonLink } from '../Button/styles'
 
 export const CardLoja = styled.div`
   max-width: 472px;

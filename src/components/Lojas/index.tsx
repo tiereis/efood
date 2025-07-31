@@ -19,6 +19,7 @@ type Props = {
   descricao: string
   categoria: string
   destaque?: boolean
+  id: number
 }
 
 import StarIcon from '../../assets/icons/StarIcons.svg'
@@ -29,7 +30,8 @@ const Lojas = ({
   nota,
   descricao,
   categoria,
-  destaque = false
+  destaque = false,
+  id
 }: Props) => (
   <CardLoja>
     <ImagemCapa style={{ backgroundImage: `url(${imagem})` }}>
@@ -48,7 +50,7 @@ const Lojas = ({
       </ContainerCabecalho>
       <Descricao>{descricao}</Descricao>
       <Button
-        to="/restaurante"
+        to={`/restaurante/${id}`}
         type="link"
         title="Clique aqui e conheca a loja"
       >

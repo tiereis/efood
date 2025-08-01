@@ -5,8 +5,11 @@ import { ButtonLink } from '../Button/styles'
 export const CardLoja = styled.div`
   max-width: 472px;
   width: 100%;
-  height: 398px;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 `
 
 export const ImagemCapa = styled.div`
@@ -35,6 +38,14 @@ export const Container = styled.div`
   border-right: 1px solid ${cores.corPrincipal};
   border-bottom: 1px solid ${cores.corPrincipal};
   border-top: none;
+
+  ${ButtonLink} {
+    display: block;
+    max-width: 82px;
+    width: 100%;
+    height: 24px;
+    border: none;
+  }
 `
 
 export const ContainerCabecalho = styled.div`

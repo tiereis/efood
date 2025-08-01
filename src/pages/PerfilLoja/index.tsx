@@ -1,12 +1,12 @@
 import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+
+import { useGetPerfilQuery } from '../../services/api'
 
 import { Container } from '../../styles'
 import Footer from '../../components/Footer'
 import HeaderPerfil from '../../components/HeaderPerfil'
 import ListaDeComidas from '../../components/ListaDeComidas'
-import { RestauranteDetalhado } from '../Home'
-
+import Cart from '../../components/Cart'
 export type PratoDetalhado = {
   id: number
   preco: number
@@ -17,23 +17,18 @@ export type PratoDetalhado = {
 }
 
 const PerfilLoja = () => {
-  const [prato, setPrato] = useState<PratoDetalhado[]>([])
-  const [restaurante, setRestaurante] = useState<RestauranteDetalhado | null>(
-    null
-  )
-  const { id } = useParams()
+  const { id } = useParams<{ id: string }>()
 
-  useEffect(() => {
-    fetch(`https://ebac-fake-api.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((res: RestauranteDetalhado) => {
-        setRestaurante(res)
-        setPrato(res.cardapio)
-      })
-  }, [id])
-  if (!restaurante) {
+  const { data: restaurante, isLoading } = useGetPerfilQuery(id || '')
+  if (isLoading) {
     return <div>Carregando...</div>
   }
+
+  if (!restaurante) {
+    return <div>Restaurante não encontrado.</div>
+  }
+
+  const prato = restaurante.cardapio
 
   return (
     <>
@@ -41,6 +36,7 @@ const PerfilLoja = () => {
       <Container>
         <ListaDeComidas Pratos={prato} />
       </Container>
+      <Cart />
       <Footer />
     </>
   )

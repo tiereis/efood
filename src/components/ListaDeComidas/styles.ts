@@ -1,11 +1,20 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakPoints, cores } from '../../styles'
 import { ButtonContainer } from '../Button/styles'
 
 export const ListaDeComida = styled.ul`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 32px;
+
+  @media (max-width: ${breakPoints.desktop}) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: ${breakPoints.tablet}) {
+    grid-template-columns: 1fr;
+    gap: 0px;
+  }
 `
 
 export const Modal = styled.div`
@@ -47,6 +56,27 @@ export const ModalContent = styled.div`
   position: relative;
   display: flex;
   z-index: 1;
+
+  @media (max-width: ${breakPoints.tablet}) {
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    height: 80%;
+    width: 80%;
+
+    img {
+      margin: 0;
+    }
+
+    div {
+      margin-top: 10px;
+      text-align: center;
+
+      p {
+        text-align: justify;
+      }
+    }
+  }
 `
 
 export const BotaoFechar = styled.img`

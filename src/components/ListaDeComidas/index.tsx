@@ -1,4 +1,7 @@
+import { useDispatch } from 'react-redux'
 import { useState } from 'react'
+
+import fechar from '../../assets/images/close.png'
 
 import Button from '../Button'
 import ComidaItem from '../Comida'
@@ -12,14 +15,15 @@ import {
   NomeComida
 } from './styles'
 
-import fechar from '../../assets/images/close.png'
 import { PratoDetalhado } from '../../pages/PerfilLoja'
+import { add, open } from '../../store/reducers/cart'
+import { Container } from '../../styles'
 
 type Props = {
   Pratos: PratoDetalhado[]
 }
 
-const formataPreco = (preco: number) => {
+export const formataPreco = (preco: number) => {
   return new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL'
@@ -29,7 +33,7 @@ const formataPreco = (preco: number) => {
 const ListaDeComidas = ({ Pratos }: Props) => {
   const [modalEstaAberto, setModalEstaAberto] = useState(false)
   const [pratoSelecionado, setPratoSelecionado] =
-    useState<PratoDetalhado | null>(null) // Novo estado para o prato selecionado
+    useState<PratoDetalhado | null>(null)
 
   const abrirModal = (prato: PratoDetalhado) => {
     setPratoSelecionado(prato)
@@ -41,8 +45,17 @@ const ListaDeComidas = ({ Pratos }: Props) => {
     setPratoSelecionado(null) // Limpa o prato selecionado ao fechar o modal
   }
 
+  const dispatch = useDispatch()
+
+  const addCart = () => {
+    if (pratoSelecionado) {
+      dispatch(add(pratoSelecionado))
+      dispatch(open())
+    }
+  }
+
   return (
-    <main>
+    <Container as="main">
       <ListaDeComida>
         {Pratos.map((Prato) => (
           <ComidaItem
@@ -67,7 +80,11 @@ const ListaDeComidas = ({ Pratos }: Props) => {
                 {pratoSelecionado.descricao}
                 <span>{pratoSelecionado.porcao}</span>
               </Descricao>
-              <Button type="button" title="Clique aqui e adicione">
+              <Button
+                onClick={addCart}
+                type="button"
+                title="Clique aqui e adicione"
+              >
                 Adicionar ao carrinho - {formataPreco(pratoSelecionado.preco)}
               </Button>
             </div>
@@ -75,7 +92,7 @@ const ListaDeComidas = ({ Pratos }: Props) => {
           <div onClick={fecharModal} className="overlay"></div>
         </Modal>
       )}
-    </main>
+    </Container>
   )
 }
 

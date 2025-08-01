@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import HeroHeader from '../../assets/images/HeroHeader.svg'
-import imagemdecapa from '../../assets/images/imagemdecapa.png'
 import { Container } from '../../styles'
 
 export const Section = styled.section`
@@ -18,6 +17,14 @@ export const Section = styled.section`
     width: 100%;
     font-weight: 900;
     font-size: 18px;
+  }
+
+  a {
+    cursor: pointer;
+  }
+
+  ${Container} {
+    background-color: transparent;
   }
 `
 

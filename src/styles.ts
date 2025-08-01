@@ -1,5 +1,10 @@
 import styled, { createGlobalStyle } from 'styled-components'
 
+export const breakPoints = {
+  desktop: '1024px',
+  tablet: '768px'
+}
+
 export const cores = {
   corDeFundo: '#FFF8F2',
   corPrincipal: '#E66767',
@@ -24,4 +29,8 @@ export const Container = styled.div`
   width: 100%;
   margin: 0 auto;
   background-color: ${cores.corDeFundo};
+
+  @media (max-width: ${breakPoints.desktop}) {
+    width: 90%;
+  }
 `

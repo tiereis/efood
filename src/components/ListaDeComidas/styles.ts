@@ -99,7 +99,7 @@ export const ImageModal = styled.img`
   margin-right: 24px;
   object-fit: cover;
   object-position: center;
-  
+
   @media (max-width: ${breakPoints.tablet}) {
     max-width: 230px;
     height: 230px;

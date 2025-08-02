@@ -1,5 +1,5 @@
 import Button from '../Button'
-import { Card, ComidaDescricao, ComidaFoto, ComidaNome } from './styles'
+import * as S from './styles'
 
 type Props = {
   imagem: string
@@ -17,10 +17,10 @@ const ComidaItem = ({ imagem, nomePrato, descricaoPrato, onClick }: Props) => {
   }
 
   return (
-    <Card>
-      <ComidaFoto src={imagem} alt={descricaoPrato} />
-      <ComidaNome>{nomePrato}</ComidaNome>
-      <ComidaDescricao>{getDescricao(descricaoPrato)}</ComidaDescricao>
+    <S.Card>
+      <S.ComidaFoto src={imagem} alt={descricaoPrato} />
+      <S.ComidaNome>{nomePrato}</S.ComidaNome>
+      <S.ComidaDescricao>{getDescricao(descricaoPrato)}</S.ComidaDescricao>
       <Button
         onClick={onClick}
         type="button"
@@ -28,7 +28,7 @@ const ComidaItem = ({ imagem, nomePrato, descricaoPrato, onClick }: Props) => {
       >
         Mais Detalhes
       </Button>
-    </Card>
+    </S.Card>
   )
 }
 

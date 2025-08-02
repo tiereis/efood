@@ -1,33 +1,18 @@
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
-
-import fechar from '../../assets/images/close.png'
-
-import Button from '../Button'
-import ComidaItem from '../Comida'
-import {
-  BotaoFechar,
-  Descricao,
-  ImageModal,
-  ListaDeComida,
-  Modal,
-  ModalContent,
-  NomeComida
-} from './styles'
-
-import { PratoDetalhado } from '../../pages/PerfilLoja'
 import { add, open } from '../../store/reducers/cart'
 import { Container } from '../../styles'
 
-type Props = {
-  Pratos: PratoDetalhado[]
-}
+import ComidaItem from '../Comida'
+import Button from '../Button'
 
-export const formataPreco = (preco: number) => {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(preco)
+import { formataPreco } from '../../utils'
+
+import * as S from './styles'
+import fechar from '../../assets/images/close.png'
+
+export type Props = {
+  Pratos: PratoDetalhado[]
 }
 
 const ListaDeComidas = ({ Pratos }: Props) => {
@@ -56,7 +41,7 @@ const ListaDeComidas = ({ Pratos }: Props) => {
 
   return (
     <Container as="main">
-      <ListaDeComida>
+      <S.ListaDeComida>
         {Pratos.map((Prato) => (
           <ComidaItem
             key={Prato.id}
@@ -66,20 +51,20 @@ const ListaDeComidas = ({ Pratos }: Props) => {
             onClick={() => abrirModal(Prato)} // Adiciona um onClick para abrir o modal com o prato certo
           />
         ))}
-      </ListaDeComida>
+      </S.ListaDeComida>
 
       {/* O modal só é renderizado se estiver aberto E se houver um prato selecionado */}
       {modalEstaAberto && pratoSelecionado && (
-        <Modal className={modalEstaAberto ? 'visivel' : ''}>
-          <ModalContent>
-            <BotaoFechar src={fechar} onClick={fecharModal} />
-            <ImageModal src={pratoSelecionado.foto} />
+        <S.Modal className={modalEstaAberto ? 'visivel' : ''}>
+          <S.ModalContent>
+            <S.BotaoFechar src={fechar} onClick={fecharModal} />
+            <S.ImageModal src={pratoSelecionado.foto} />
             <div>
-              <NomeComida>{pratoSelecionado.nome}</NomeComida>
-              <Descricao>
+              <S.NomeComida>{pratoSelecionado.nome}</S.NomeComida>
+              <S.Descricao>
                 {pratoSelecionado.descricao}
                 <span>{pratoSelecionado.porcao}</span>
-              </Descricao>
+              </S.Descricao>
               <Button
                 onClick={addCart}
                 type="button"
@@ -88,9 +73,9 @@ const ListaDeComidas = ({ Pratos }: Props) => {
                 Adicionar ao carrinho - {formataPreco(pratoSelecionado.preco)}
               </Button>
             </div>
-          </ModalContent>
+          </S.ModalContent>
           <div onClick={fecharModal} className="overlay"></div>
-        </Modal>
+        </S.Modal>
       )}
     </Container>
   )

@@ -1,13 +1,15 @@
-import { Hero, LogoImg, SubTitulo } from './styles'
 import logo from '../../assets/images/logo.svg'
+import * as S from './styles'
 
 const Header = () => (
-  <Hero>
-    <LogoImg src={logo} alt="EFOOD" />
-    <SubTitulo>
+  <S.Hero>
+    <h1>
+      <S.LogoImg src={logo} alt="EFOOD" />
+    </h1>
+    <S.SubTitulo>
       Viva experiências gastronômicas no conforto da sua casa
-    </SubTitulo>
-  </Hero>
+    </S.SubTitulo>
+  </S.Hero>
 )
 
 export default Header

@@ -1,7 +1,6 @@
 import Lojas from '../Lojas'
-import { ListaLoja } from './styles'
 
-import { RestauranteDetalhado } from '../../pages/Home'
+import { ListaLoja } from './styles'
 import { Container } from '../../styles'
 
 type Props = {

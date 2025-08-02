@@ -1,17 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  Capa,
-  NomeRestaurante,
-  Paragrafo,
-  Section,
-  Transparente
-} from './styles'
-import logo from '../../assets/images/logo.svg'
 import { Link } from 'react-router-dom'
-import { Container } from '../../styles'
-import { RestauranteDetalhado } from '../../pages/Home'
-import { open } from '../../store/reducers/cart'
+
 import { RootReducer } from '../../store'
+import { open } from '../../store/reducers/cart'
+
+import * as S from './styles'
+import { Container } from '../../styles'
+
+import logo from '../../assets/images/logo.svg'
 
 type Props = {
   heroBanner: RestauranteDetalhado
@@ -27,22 +23,26 @@ const HeaderPerfil = ({ heroBanner }: Props) => {
 
   return (
     <header>
-      <Section>
+      <S.Section>
         <Container>
-          <p>Restaurantes</p>
-          <Link to="/">
-            <img src={logo} alt="" />
+          <a href="/">Restaurantes</a>
+          <Link to="/" className="logo-primeiro">
+            <h1>
+              <img src={logo} alt="" />
+            </h1>
           </Link>
-          <a onClick={cartOpen}>{items.length} produto(s) no carrinho</a>
+          <span role="button" onClick={cartOpen}>
+            {items.length} produto(s) no carrinho
+          </span>
         </Container>
-      </Section>
-      <Capa style={{ backgroundImage: `url(${heroBanner.capa})` }}>
-        <Transparente />
+      </S.Section>
+      <S.Capa style={{ backgroundImage: `url(${heroBanner.capa})` }}>
+        <S.Transparente />
         <Container>
-          <Paragrafo>{heroBanner.tipo}</Paragrafo>
-          <NomeRestaurante>{heroBanner.titulo}</NomeRestaurante>
+          <S.Paragrafo>{heroBanner.tipo}</S.Paragrafo>
+          <S.NomeRestaurante>{heroBanner.titulo}</S.NomeRestaurante>
         </Container>
-      </Capa>
+      </S.Capa>
     </header>
   )
 }

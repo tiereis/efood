@@ -1,6 +1,8 @@
 import styled from 'styled-components'
+
+import { breakPoints, Container, cores } from '../../styles'
+
 import HeroHeader from '../../assets/images/HeroHeader.svg'
-import { Container } from '../../styles'
 
 export const Section = styled.section`
   display: flex;
@@ -8,7 +10,19 @@ export const Section = styled.section`
   justify-content: center;
   background-image: url(${HeroHeader});
 
-  div {
+  h1 {
+    line-height: 0;
+  }
+
+  a,
+  span {
+    cursor: pointer;
+    text-decoration: none;
+    color: ${cores.corPrincipal};
+  }
+
+  ${Container} {
+    background-color: transparent;
     display: flex;
     height: 186px;
     align-items: center;
@@ -19,12 +33,15 @@ export const Section = styled.section`
     font-size: 18px;
   }
 
-  a {
-    cursor: pointer;
-  }
+  @media (max-width: ${breakPoints.tablet}) {
+    ${Container} {
+      flex-direction: column;
+      justify-content: space-around;
 
-  ${Container} {
-    background-color: transparent;
+      .logo-primeiro {
+        order: -1;
+      }
+    }
   }
 `
 

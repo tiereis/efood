@@ -1,6 +1,7 @@
 import styled from 'styled-components'
-import { breakPoints, cores } from '../../styles'
+
 import { ButtonContainer } from '../Button/styles'
+import { breakPoints, cores } from '../../styles'
 
 export const ListaDeComida = styled.ul`
   display: grid;
@@ -36,8 +37,8 @@ export const Modal = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.73);
   }
 
@@ -61,7 +62,7 @@ export const ModalContent = styled.div`
     flex-direction: column;
     top: 0;
     left: 0;
-    height: 80%;
+    height: auto;
     width: 80%;
 
     img {
@@ -76,6 +77,10 @@ export const ModalContent = styled.div`
         text-align: justify;
       }
     }
+  }
+
+  @media (max-width: ${breakPoints.tablet}) {
+    align-items: center;
   }
 `
 
@@ -94,6 +99,11 @@ export const ImageModal = styled.img`
   margin-right: 24px;
   object-fit: cover;
   object-position: center;
+  
+  @media (max-width: ${breakPoints.tablet}) {
+    max-width: 230px;
+    height: 230px;
+  }
 `
 
 export const NomeComida = styled.h2`

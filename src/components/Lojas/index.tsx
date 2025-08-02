@@ -1,16 +1,6 @@
 import Button from '../Button'
 import Tag from '../Tag'
-import {
-  CardLoja,
-  Container,
-  ContainerAvaliacao,
-  ContainerCabecalho,
-  ContainerTag,
-  Descricao,
-  ImagemCapa,
-  NotaAvaliacao,
-  Titulo
-} from './styles'
+import * as S from './styles'
 
 type Props = {
   imagem: string
@@ -33,22 +23,22 @@ const Lojas = ({
   destaque = false,
   id
 }: Props) => (
-  <CardLoja>
-    <ImagemCapa style={{ backgroundImage: `url(${imagem})` }}>
-      <ContainerTag>
+  <S.CardLoja>
+    <S.ImagemCapa style={{ backgroundImage: `url(${imagem})` }}>
+      <S.ContainerTag>
         {destaque && <Tag size="big">Destaque da semana</Tag>}
         <Tag>{categoria}</Tag>
-      </ContainerTag>
-    </ImagemCapa>
-    <Container>
-      <ContainerCabecalho>
-        <Titulo>{titulo}</Titulo>
-        <ContainerAvaliacao>
-          <NotaAvaliacao>{nota}</NotaAvaliacao>
+      </S.ContainerTag>
+    </S.ImagemCapa>
+    <S.Container>
+      <S.ContainerCabecalho>
+        <S.Titulo>{titulo}</S.Titulo>
+        <S.ContainerAvaliacao>
+          <S.NotaAvaliacao>{nota}</S.NotaAvaliacao>
           <img src={StarIcon} alt="icone estrela" />
-        </ContainerAvaliacao>
-      </ContainerCabecalho>
-      <Descricao>{descricao}</Descricao>
+        </S.ContainerAvaliacao>
+      </S.ContainerCabecalho>
+      <S.Descricao>{descricao}</S.Descricao>
       <Button
         to={`/restaurante/${id}`}
         type="link"
@@ -56,8 +46,8 @@ const Lojas = ({
       >
         Saiba mais
       </Button>
-    </Container>
-  </CardLoja>
+    </S.Container>
+  </S.CardLoja>
 )
 
 export default Lojas

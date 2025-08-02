@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+
 import HeroHeader from '../../assets/images/HeroHeader.svg'
 
 export const Hero = styled.header`
@@ -10,11 +11,15 @@ export const Hero = styled.header`
   justify-content: space-around;
   align-items: center;
   margin-bottom: 80px;
+
+  h1 {
+    line-height: 0;
+    margin-top: 40px;
+  }
 `
 export const LogoImg = styled.img`
   max-width: 100%;
   height: auto;
-  margin-top: 40px;
 `
 export const SubTitulo = styled.h2`
   font-size: 2.25rem;
